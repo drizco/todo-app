@@ -5,8 +5,6 @@ export const getAllTodos = async () => {
   if (response.ok) {
     const data = await response.json();
     return data;
-  } else {
-    throw new Error('error fetching todos');
   }
 };
 
@@ -15,8 +13,6 @@ export const getTodo = async ({ id }) => {
   if (response.ok) {
     const data = await response.json();
     return data;
-  } else {
-    throw new Error('error fetching todo');
   }
 };
 
@@ -27,8 +23,6 @@ export const createTodo = async ({ title }) => {
   if (response.ok) {
     const data = await response.json();
     return data;
-  } else {
-    throw new Error('error creating todo');
   }
 };
 
@@ -37,8 +31,6 @@ export const getItems = async ({ id }) => {
   if (response.ok) {
     const data = await response.json();
     return data;
-  } else {
-    throw new Error('error fetching todos');
   }
 };
 
@@ -52,7 +44,5 @@ export const createItem = async ({ id, title }) => {
   if (response.ok) {
     const data = await response.json();
     return data;
-  } else {
-    throw new Error('error creating todo item');
   }
 };

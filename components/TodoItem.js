@@ -1,13 +1,24 @@
 import Card from '@/components/Card';
 import styles from '@/styles/components/todo-item.module.scss';
+import CheckBox from '@/components/CheckBox';
+import { TrashIcon } from '@/components/Icons';
 
-const TodoItem = ({ title, id, handleDelete }) => {
+const TodoItem = ({ title, completed, handleDelete, handleCheck }) => {
   return (
     <Card>
       <div className={styles.todo_item}>
         <div className={styles.title}>{title}</div>
-        <button onClick={handleDelete}>🗑️</button>
-        <button onClick={handleDelete}>🗑️</button>
+        <div className={styles.checkbox_container}>
+          <CheckBox
+            type="checkbox"
+            name={title}
+            checked={completed}
+            onChange={handleCheck}
+          />
+        </div>
+        <button onClick={handleDelete}>
+          <TrashIcon />
+        </button>
       </div>
     </Card>
   );

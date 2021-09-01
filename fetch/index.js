@@ -70,3 +70,12 @@ export const deleteItem = async ({ todoId, itemId }) => {
     method: 'DELETE',
   });
 };
+
+// UPDATE
+export const updateItem = async ({ todoId, itemId, completed }) => {
+  if (!todoId) throw new Error('todo id is required');
+  if (!itemId) throw new Error('item id is required');
+  await fetch(`${API_URL}/todos/${todoId}/items/${itemId}?completed=${completed}`, {
+    method: 'PATCH',
+  });
+};

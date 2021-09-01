@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from '@/styles/layout.module.scss';
+import styles from '@/styles/components/layout.module.scss';
 
 const Layout = ({ children }) => {
   return (

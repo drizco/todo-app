@@ -1,0 +1,22 @@
+.input_container {
+  width: 100%;
+  display: flex;
+  border: 3px solid #aeaeae;
+  border-radius: 5px;
+  margin: 1rem 0 2rem;
+
+  input {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: none;
+
+    &[type='text'] {
+      flex: 1;
+    }
+
+    &[type='submit'] {
+      border-left: 3px solid #aeaeae;
+      background-color: transparent;
+    }
+  }
+}

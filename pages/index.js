@@ -44,9 +44,11 @@ const Todos = ({ todos = [] }) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      {filteredTodos.map((todo) => (
-        <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
-      ))}
+      <ul>
+        {filteredTodos.map((todo) => (
+          <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
+        ))}
+      </ul>
     </>
   );
 };
@@ -60,6 +62,7 @@ export const getServerSideProps = async () => {
       notFound: true,
     };
   }
+  todos.reverse();
   return {
     props: {
       todos,

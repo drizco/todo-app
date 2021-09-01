@@ -1,5 +1,5 @@
 import styles from '@/styles/components/card.module.scss';
 
-const Card = ({ children }) => <div className={styles.card}>{children}</div>;
+const Card = ({ children }) => <li className={styles.card}>{children}</li>;
 
 export default Card;

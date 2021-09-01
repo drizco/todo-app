@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTodo, getItems, createItem, deleteItem } from '@/fetch';
+import { getTodo, getItems, createItem, deleteItem, updateItem } from '@/fetch';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
 import filterList from '@/utils/filterList';
@@ -36,6 +36,13 @@ const TodoDetail = ({ todo, id, items = [] }) => {
     refreshData();
   };
 
+  const handleCheck = async (e, { id }) => {
+    console.log('HANDLE CHECK');
+    const { checked } = e.target;
+    await updateItem({ todoId: todo.id, itemId: id, completed: checked });
+    refreshData();
+  };
+
   return (
     <div>
       <h1>{todo?.title}</h1>
@@ -45,9 +52,16 @@ const TodoDetail = ({ todo, id, items = [] }) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      {filteredItems.map((item) => (
-        <TodoItem key={item.id} handleDelete={() => handleDelete(item)} {...item} />
-      ))}
+      <ul>
+        {filteredItems.map((item) => (
+          <TodoItem
+            key={item.id}
+            handleDelete={() => handleDelete(item)}
+            handleCheck={(e) => handleCheck(e, item)}
+            {...item}
+          />
+        ))}
+      </ul>
     </div>
   );
 };
@@ -62,6 +76,7 @@ export const getServerSideProps = async ({ params }) => {
       notFound: true,
     };
   }
+  items.reverse();
   return {
     props: {
       todo,

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getTodo, getItems, createItem } from '@/fetch';
+import { getTodo, getItems, createItem, deleteItem } from '@/fetch';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
 import filterList from '@/utils/filterList';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
+import TodoItem from '@/components/TodoItem';
 
 const TodoDetail = ({ todo, id, items = [] }) => {
   const [title, setTitle] = useState('');
@@ -30,6 +31,11 @@ const TodoDetail = ({ todo, id, items = [] }) => {
     refreshData();
   };
 
+  const handleDelete = async ({ id }) => {
+    await deleteItem({ todoId: todo.id, itemId: id });
+    refreshData();
+  };
+
   return (
     <div>
       <h1>{todo?.title}</h1>
@@ -40,7 +46,7 @@ const TodoDetail = ({ todo, id, items = [] }) => {
         onSubmit={handleSubmit}
       />
       {filteredItems.map((item) => (
-        <div key={item.id}>{item.title}</div>
+        <TodoItem key={item.id} handleDelete={() => handleDelete(item)} {...item} />
       ))}
     </div>
   );

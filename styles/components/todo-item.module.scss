@@ -1,0 +1,21 @@
+.todo_item {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .title,
+  button {
+    padding: 1rem;
+    border: none;
+  }
+  .title {
+    flex: 1;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-left: 3px solid #aeaeae;
+  }
+}

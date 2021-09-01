@@ -1,4 +1,4 @@
-import styles from '@/styles/components/input.module.scss';
+import styles from '@/styles/components/find-or-create-input.module.scss';
 
 const FindOrCreateInput = ({ value, onChange, onSubmit, type }) => {
   return (

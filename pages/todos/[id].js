@@ -5,11 +5,12 @@ import useRefreshData from '@/hooks/useRefreshData';
 import filterList from '@/utils/filterList';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
 import TodoItem from '@/components/TodoItem';
+import { AnimatePresence } from 'framer-motion';
 
 const TodoDetail = ({ todo, id, items = [] }) => {
   const [title, setTitle] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
-  const searchTerm = useDebounce(title, 300);
+  const searchTerm = useDebounce(title, 500);
   const refreshData = useRefreshData();
 
   useEffect(() => {
@@ -53,14 +54,16 @@ const TodoDetail = ({ todo, id, items = [] }) => {
         onSubmit={handleSubmit}
       />
       <ul>
-        {filteredItems.map((item) => (
-          <TodoItem
-            key={item.id}
-            handleDelete={() => handleDelete(item)}
-            handleCheck={(e) => handleCheck(e, item)}
-            {...item}
-          />
-        ))}
+        <AnimatePresence>
+          {filteredItems.map((item) => (
+            <TodoItem
+              key={item.id}
+              handleDelete={() => handleDelete(item)}
+              handleCheck={(e) => handleCheck(e, item)}
+              {...item}
+            />
+          ))}
+        </AnimatePresence>
       </ul>
     </div>
   );

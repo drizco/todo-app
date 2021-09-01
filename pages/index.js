@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { createTodo, deleteTodo, getAllTodos } from '@/fetch';
 import filterList from '@/utils/filterList';
 import useDebounce from '@/hooks/useDebounce';
@@ -9,7 +10,7 @@ import FindOrCreateInput from '@/components/FindOrCreateInput';
 const Todos = ({ todos = [] }) => {
   const [title, setTitle] = useState('');
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const searchTerm = useDebounce(title, 300);
+  const searchTerm = useDebounce(title, 500);
   const refreshData = useRefreshData();
 
   useEffect(() => {
@@ -44,11 +45,13 @@ const Todos = ({ todos = [] }) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <ul>
-        {filteredTodos.map((todo) => (
-          <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
-        ))}
-      </ul>
+      <AnimatePresence>
+        <ul>
+          {filteredTodos.map((todo) => (
+            <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
+          ))}
+        </ul>
+      </AnimatePresence>
     </>
   );
 };

@@ -1,8 +1,10 @@
 .todo {
+  position: relative;
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+
   a,
   button {
     padding: 1rem;
@@ -14,8 +16,7 @@
 
   button {
     cursor: pointer;
-    background-color: transparent;
-    font-size: 1.5rem;
+    background: none;
     border-left: 3px solid #aeaeae;
   }
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Card from '@/components/Card';
+import { TrashIcon } from '@/components/Icons';
 import styles from '@/styles/components/todo.module.scss';
 
 const Todo = ({ title, id, handleDelete }) => {
@@ -9,7 +10,9 @@ const Todo = ({ title, id, handleDelete }) => {
         <Link href={`/todos/${id}`}>
           <a>{title}</a>
         </Link>
-        <button onClick={handleDelete}>🗑️</button>
+        <button onClick={handleDelete}>
+          <TrashIcon />
+        </button>
       </div>
     </Card>
   );

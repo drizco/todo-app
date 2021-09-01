@@ -1,0 +1,38 @@
+.input_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  .hidden_checkbox {
+    display: none;
+  }
+  label {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .checkbox,
+  .check,
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .check {
+    display: none;
+    left: 2px;
+    top: -2px;
+
+    &.is_checked {
+      display: initial;
+    }
+  }
+}

@@ -1,9 +1,6 @@
 module.exports = {
   collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
   moduleNameMapper: {
-    // Handle absolute imports
-    '^@/(.*)$': '<rootDir>/$1',
-
     // Handle CSS imports (with CSS modules)
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
 
@@ -12,6 +9,9 @@ module.exports = {
 
     // Handle image imports
     '^.+\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
+
+    // Handle absolute imports
+    '^@/(.*)$': '<rootDir>/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   testEnvironment: 'jsdom',

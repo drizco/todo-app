@@ -5,7 +5,7 @@ import useRefreshData from '@/hooks/useRefreshData';
 import filterList from '@/utils/filterList';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
 
-const TodoDetail = ({ todo, id, items }) => {
+const TodoDetail = ({ todo, id, items = [] }) => {
   const [title, setTitle] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
   const searchTerm = useDebounce(title, 300);

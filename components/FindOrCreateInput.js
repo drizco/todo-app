@@ -1,4 +1,5 @@
 import styles from '@/styles/components/find-or-create-input.module.scss';
+import { PlusIcon } from './Icons';
 
 const FindOrCreateInput = ({ value, onChange, onSubmit, type }) => {
   return (
@@ -10,7 +11,9 @@ const FindOrCreateInput = ({ value, onChange, onSubmit, type }) => {
         value={value}
         onChange={onChange}
       />
-      <input type="submit" value="➕" />
+      <button type="submit" disabled={!value}>
+        <PlusIcon />
+      </button>
     </form>
   );
 };

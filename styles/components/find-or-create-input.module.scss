@@ -5,18 +5,18 @@
   border-radius: 5px;
   margin: 1rem 0 2rem;
 
-  input {
+  input,
+  button {
     font-size: 1.5rem;
     padding: 1rem;
     border: none;
+  }
+  input {
+    flex: 1;
+  }
 
-    &[type='text'] {
-      flex: 1;
-    }
-
-    &[type='submit'] {
-      border-left: 3px solid #aeaeae;
-      background-color: transparent;
-    }
+  button {
+    border-left: 3px solid #aeaeae;
+    background-color: transparent;
   }
 }

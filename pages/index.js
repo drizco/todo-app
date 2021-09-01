@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { createTodo, getAllTodos } from '@/fetch';
+import { createTodo, deleteTodo, getAllTodos } from '@/fetch';
+import filterList from '@/utils/filterList';
+import useDebounce from '@/hooks/useDebounce';
+import useRefreshData from '@/hooks/useRefreshData';
 import Todo from '@/components/Todo';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
-import useDebounce from '@/hooks/useDebounce';
-import filterList from '@/utils/filterList';
-import useRefreshData from '@/hooks/useRefreshData';
+import styles from '@/styles/common.module.scss';
 
 const Todos = ({ todos = [] }) => {
   const [title, setTitle] = useState('');
@@ -31,8 +32,13 @@ const Todos = ({ todos = [] }) => {
     refreshData();
   };
 
+  const handleDelete = async ({ id }) => {
+    await deleteTodo({ id });
+    refreshData();
+  };
+
   return (
-    <div>
+    <div className={styles.item_container}>
       <FindOrCreateInput
         type="Todo"
         value={title}
@@ -40,7 +46,7 @@ const Todos = ({ todos = [] }) => {
         onSubmit={handleSubmit}
       />
       {filteredTodos.map((todo) => (
-        <Todo key={todo.id} {...todo} />
+        <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
       ))}
     </div>
   );

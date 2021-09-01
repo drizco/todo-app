@@ -1,12 +1,17 @@
 import Link from 'next/link';
+import Card from '@/components/Card';
+import styles from '@/styles/components/todo.module.scss';
 
-const Todo = ({ title, id }) => {
+const Todo = ({ title, id, handleDelete }) => {
   return (
-    <div>
-      <Link href={`/todos/${id}`}>
-        <a>{title}</a>
-      </Link>
-    </div>
+    <Card>
+      <div className={styles.todo}>
+        <Link href={`/todos/${id}`}>
+          <a>{title}</a>
+        </Link>
+        <button onClick={handleDelete}>🗑️</button>
+      </div>
+    </Card>
   );
 };
 

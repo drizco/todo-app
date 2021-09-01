@@ -58,9 +58,14 @@ export const createItem = async ({ id, title }) => {
 // DELETE
 export const deleteTodo = async ({ id }) => {
   if (!id) throw new Error('id is required');
-  await fetch(`${API_URL}/todos/${id}`, {
-    method: 'DELETE',
-  });
+  const items = await getItems({ id });
+  const promiseArray = items.map((item) => deleteItem({ todoId: id, itemId: item.id }));
+  await Promise.all([
+    fetch(`${API_URL}/todos/${id}`, {
+      method: 'DELETE',
+    }),
+    ...promiseArray,
+  ]);
 };
 
 export const deleteItem = async ({ todoId, itemId }) => {

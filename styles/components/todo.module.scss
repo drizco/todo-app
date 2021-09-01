@@ -1,0 +1,21 @@
+.todo {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a,
+  button {
+    padding: 1rem;
+    border: none;
+  }
+  a {
+    flex: 1;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-left: 3px solid #aeaeae;
+  }
+}

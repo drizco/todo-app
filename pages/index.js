@@ -5,7 +5,6 @@ import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
 import Todo from '@/components/Todo';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
-import styles from '@/styles/common.module.scss';
 
 const Todos = ({ todos = [] }) => {
   const [title, setTitle] = useState('');
@@ -38,7 +37,7 @@ const Todos = ({ todos = [] }) => {
   };
 
   return (
-    <div className={styles.item_container}>
+    <>
       <FindOrCreateInput
         type="Todo"
         value={title}
@@ -48,7 +47,7 @@ const Todos = ({ todos = [] }) => {
       {filteredTodos.map((todo) => (
         <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
       ))}
-    </div>
+    </>
   );
 };
 

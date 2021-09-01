@@ -10,7 +10,9 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        <div className={styles.page_container}>{children}</div>
+      </main>
     </div>
   );
 };

@@ -12,4 +12,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .page_container {
+    width: 90vw;
+    max-width: 35rem;
+  }
 }

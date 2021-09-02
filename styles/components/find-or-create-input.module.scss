@@ -1,9 +1,10 @@
 .input_container {
   width: 100%;
   display: flex;
-  border: 3px solid #aeaeae;
-  border-radius: 5px;
+  border: 2px solid #777777;
+  border-radius: 10px;
   margin: 1rem 0 2rem;
+  box-shadow: 0px 20px 20px -10px rgba(174, 174, 174, 0.75);
 
   input,
   button {
@@ -11,13 +12,13 @@
     padding: 1rem;
     border: none;
     outline: none;
+    background: none;
   }
   input {
     flex: 1;
   }
 
   button {
-    border-left: 3px solid #aeaeae;
-    background-color: transparent;
+    border-left: 3px solid #777777;
   }
 }

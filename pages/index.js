@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { createTodo, deleteTodo, getAllTodos } from '@/fetch';
 import filterList from '@/utils/filterList';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
 import useError from '@/hooks/useError';
 import Todo from '@/components/Todo';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
+import styles from '@/styles/pages/todos.module.scss';
+import createTodo from '@/fetch/createTodo';
+import deleteTodo from '@/fetch/deleteTodo';
+import getAllTodos from '@/fetch/getAllTodos';
 
 const Todos = ({ todos = [] }) => {
   const [title, setTitle] = useState('');
@@ -39,10 +42,9 @@ const Todos = ({ todos = [] }) => {
     }
   };
 
-  const handleDelete = async (todo) => {
+  const handleDelete = async ({ id }) => {
     try {
-      const { id } = todo;
-      setFilteredTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+      setFilteredTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
       await deleteTodo({ id });
     } catch (error) {
       toastError();
@@ -53,8 +55,9 @@ const Todos = ({ todos = [] }) => {
 
   return (
     <>
+      <div className={styles.spacer} />
       <FindOrCreateInput
-        type="Todo"
+        type="to-do"
         value={title}
         onChange={handleChange}
         onSubmit={handleSubmit}

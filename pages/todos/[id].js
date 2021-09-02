@@ -1,17 +1,25 @@
 import { useEffect, useState } from 'react';
-import { getTodo, getItems, createItem, deleteItem, updateItem } from '@/fetch';
+import { AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
+import useError from '@/hooks/useError';
 import filterList from '@/utils/filterList';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
 import TodoItem from '@/components/TodoItem';
-import { AnimatePresence } from 'framer-motion';
+import styles from '@/styles/pages/todo-detail.module.scss';
+import createItem from '@/fetch/createItem';
+import deleteItem from '@/fetch/deleteItem';
+import updateItem from '@/fetch/updateItem';
+import getTodo from '@/fetch/getTodo';
+import getItems from '@/fetch/getItems';
 
 const TodoDetail = ({ todo, id, items = [] }) => {
   const [title, setTitle] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
   const searchTerm = useDebounce(title, 500);
   const refreshData = useRefreshData();
+  const { toastError } = useError();
 
   useEffect(() => {
     if (searchTerm) {
@@ -27,14 +35,25 @@ const TodoDetail = ({ todo, id, items = [] }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createItem({ id, title });
-    setTitle('');
-    refreshData();
+    try {
+      await createItem({ id, title });
+      setTitle('');
+    } catch (error) {
+      toastError();
+    } finally {
+      refreshData();
+    }
   };
 
   const handleDelete = async ({ id }) => {
-    await deleteItem({ todoId: todo.id, itemId: id });
-    refreshData();
+    try {
+      setFilteredItems((prevItems) => prevItems.filter((item) => item.id !== id));
+      await deleteItem({ todoId: todo.id, itemId: id });
+    } catch (error) {
+      toastError();
+    } finally {
+      refreshData();
+    }
   };
 
   const handleCheck = async (e, { id }) => {
@@ -46,9 +65,14 @@ const TodoDetail = ({ todo, id, items = [] }) => {
 
   return (
     <div>
-      <h1>{todo?.title}</h1>
+      <div className={styles.title_wrapper}>
+        <h1>{todo?.title}</h1>
+        <Link href="/">
+          <a>&#10094; All to-dos</a>
+        </Link>
+      </div>
       <FindOrCreateInput
-        type="Item"
+        type="item"
         value={title}
         onChange={handleChange}
         onSubmit={handleSubmit}

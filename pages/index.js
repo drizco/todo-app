@@ -4,6 +4,7 @@ import { createTodo, deleteTodo, getAllTodos } from '@/fetch';
 import filterList from '@/utils/filterList';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
+import useError from '@/hooks/useError';
 import Todo from '@/components/Todo';
 import FindOrCreateInput from '@/components/FindOrCreateInput';
 
@@ -12,6 +13,7 @@ const Todos = ({ todos = [] }) => {
   const [filteredTodos, setFilteredTodos] = useState([]);
   const searchTerm = useDebounce(title, 500);
   const refreshData = useRefreshData();
+  const { toastError } = useError();
 
   useEffect(() => {
     if (searchTerm) {
@@ -27,14 +29,26 @@ const Todos = ({ todos = [] }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createTodo({ title });
-    setTitle('');
-    refreshData();
+    try {
+      await createTodo({ title });
+      setTitle('');
+    } catch (error) {
+      toastError();
+    } finally {
+      refreshData();
+    }
   };
 
-  const handleDelete = async ({ id }) => {
-    await deleteTodo({ id });
-    refreshData();
+  const handleDelete = async (todo) => {
+    try {
+      const { id } = todo;
+      setFilteredTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+      await deleteTodo({ id });
+    } catch (error) {
+      toastError();
+    } finally {
+      refreshData();
+    }
   };
 
   return (
@@ -45,13 +59,13 @@ const Todos = ({ todos = [] }) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <AnimatePresence>
-        <ul>
+      <ul>
+        <AnimatePresence>
           {filteredTodos.map((todo) => (
             <Todo key={todo.id} handleDelete={() => handleDelete(todo)} {...todo} />
           ))}
-        </ul>
-      </AnimatePresence>
+        </AnimatePresence>
+      </ul>
     </>
   );
 };

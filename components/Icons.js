@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from '@/styles/components/icons.module.scss';
 
-export const CheckIcon = ({ color = '#000000', className = '' }) => (
+export const CheckIcon = ({ color = '#222222', className = '' }) => (
   <div className={classNames(styles.icon_wrapper, className)}>
     <svg
       fill={color}
@@ -15,7 +15,7 @@ export const CheckIcon = ({ color = '#000000', className = '' }) => (
   </div>
 );
 
-export const RoundIcon = ({ color = '#000000', className = '' }) => (
+export const RoundIcon = ({ color = '#222222', className = '' }) => (
   <div className={classNames(styles.icon_wrapper, className)}>
     <svg
       fill={color}
@@ -29,7 +29,7 @@ export const RoundIcon = ({ color = '#000000', className = '' }) => (
   </div>
 );
 
-export const TrashIcon = ({ color = '#000000', className = '' }) => (
+export const TrashIcon = ({ color = '#222222', className = '' }) => (
   <div className={classNames(styles.icon_wrapper, className)}>
     <svg
       fill={color}
@@ -44,7 +44,7 @@ export const TrashIcon = ({ color = '#000000', className = '' }) => (
   </div>
 );
 
-export const PlusIcon = ({ color = '#000000', className = '' }) => (
+export const PlusIcon = ({ color = '#222222', className = '' }) => (
   <div className={classNames(styles.icon_wrapper, className)}>
     <svg
       fill={color}

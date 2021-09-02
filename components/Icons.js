@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import styles from '@/styles/components/icons.module.scss';
 
 export const CheckIcon = ({ color = '#222222', className = '' }) => (
-  <div className={classNames(styles.icon_wrapper, className)}>
+  <div data-cypress="checked" className={classNames(styles.icon_wrapper, className)}>
     <svg
       fill={color}
       xmlns="http://www.w3.org/2000/svg"

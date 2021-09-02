@@ -1,5 +1,5 @@
 import styles from '@/styles/components/find-or-create-input.module.scss';
-import { PlusIcon } from './Icons';
+import { PlusIcon } from '@/components/Icons';
 
 const FindOrCreateInput = ({ value, onChange, onSubmit, type }) => {
   return (

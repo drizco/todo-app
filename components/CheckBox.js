@@ -1,6 +1,6 @@
 import styles from '@/styles/components/checkbox.module.scss';
 import classNames from 'classnames';
-import { CheckIcon, RoundIcon } from './Icons';
+import { CheckIcon, RoundIcon } from '@/components/Icons';
 
 const CheckBox = ({ className, checked, onChange, name }) => {
   return (

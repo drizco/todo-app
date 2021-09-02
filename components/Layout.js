@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>To Do App</title>
+        <title>Death Star Corp To-dos</title>
         <meta name="description" content="To do app with a rails backend" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -73,7 +73,7 @@ const TodoDetail = ({ todo, id, items = [] }) => {
   return (
     <div>
       <div className={styles.title_wrapper}>
-        <h1>{todo?.title}</h1>
+        <h2>{todo?.title}</h2>
         <Link href="/">
           <a>&#10094; All to-dos</a>
         </Link>

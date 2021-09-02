@@ -57,10 +57,17 @@ const TodoDetail = ({ todo, id, items = [] }) => {
   };
 
   const handleCheck = async (e, { id }) => {
-    console.log('HANDLE CHECK');
-    const { checked } = e.target;
-    await updateItem({ todoId: todo.id, itemId: id, completed: checked });
-    refreshData();
+    try {
+      const { checked } = e.target;
+      setFilteredItems((prevItems) =>
+        prevItems.map((item) => (item.id === id ? { ...item, completed: checked } : item))
+      );
+      await updateItem({ todoId: todo.id, itemId: id, completed: checked });
+    } catch (error) {
+      toastError();
+    } finally {
+      refreshData();
+    }
   };
 
   return (

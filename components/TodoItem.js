@@ -6,7 +6,7 @@ import { TrashIcon } from '@/components/Icons';
 const TodoItem = ({ title, completed, handleDelete, handleCheck }) => {
   return (
     <Card>
-      <div className={styles.todo_item}>
+      <div data-testid="todo-item" className={styles.todo_item}>
         <div className={styles.title}>{title}</div>
         <div className={styles.checkbox_container}>
           <CheckBox

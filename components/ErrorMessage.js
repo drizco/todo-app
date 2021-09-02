@@ -2,7 +2,7 @@ import useError from '@/hooks/useError';
 import styles from '@/styles/components/error.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const Error = () => {
+const ErrorMessage = () => {
   const { error } = useError();
 
   const animations = {
@@ -15,7 +15,7 @@ const Error = () => {
   return (
     <AnimatePresence>
       {error && (
-        <motion.div {...animations} className={styles.error_wrapper}>
+        <motion.div data-testid="error" {...animations} className={styles.error_wrapper}>
           <div className={styles.error}>{error}</div>
         </motion.div>
       )}
@@ -23,4 +23,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorMessage;

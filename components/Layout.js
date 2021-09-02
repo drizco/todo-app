@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '@/styles/components/layout.module.scss';
-import Error from '@/components/Error';
+import ErrorMessage from '@/components/ErrorMessage';
 import Header from '@/components/Header';
 
 const Layout = ({ children }) => {
@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
       <Header />
       <main className={styles.main}>
         <div className={styles.page_container}>{children}</div>
-        <Error />
+        <ErrorMessage />
       </main>
     </div>
   );

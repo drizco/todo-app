@@ -6,7 +6,7 @@ import styles from '@/styles/components/todo.module.scss';
 const Todo = ({ title, id, handleDelete }) => {
   return (
     <Card>
-      <div className={styles.todo}>
+      <div data-testid="todo" className={styles.todo}>
         <Link href={`/todos/${id}`}>
           <a>{title}</a>
         </Link>

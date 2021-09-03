@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import useDebounce from '@/hooks/useDebounce';
 import useRefreshData from '@/hooks/useRefreshData';
@@ -13,6 +13,13 @@ import deleteItem from '@/fetch/deleteItem';
 import updateItem from '@/fetch/updateItem';
 import getTodo from '@/fetch/getTodo';
 import getItems from '@/fetch/getItems';
+
+const animations = {
+  initial: { scale: 0.8, opacity: 0 },
+  exit: { scale: 0.8, opacity: 0 },
+  animate: { scale: 1, opacity: 1 },
+  transition: { type: 'spring', bounce: 0.4, duration: 0.4 },
+};
 
 const TodoDetail = ({ todo, id, items = [] }) => {
   const [title, setTitle] = useState('');
@@ -72,12 +79,14 @@ const TodoDetail = ({ todo, id, items = [] }) => {
 
   return (
     <div>
-      <div className={styles.title_wrapper}>
-        <h2>{todo?.title}</h2>
-        <Link href="/">
-          <a>&#10094; All to-dos</a>
-        </Link>
-      </div>
+      <AnimatePresence>
+        <motion.div {...animations} className={styles.title_wrapper}>
+          <h2>{todo?.title}</h2>
+          <Link href="/">
+            <a>&#10094; All to-dos</a>
+          </Link>
+        </motion.div>
+      </AnimatePresence>
       <FindOrCreateInput
         type="item"
         value={title}

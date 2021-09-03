@@ -8,7 +8,7 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "test": "jest --watch",
-    "cypress": "cypress run --project __e2e__",
+    "cypress": "cypress open --project __e2e__",
     "start-server": "yarn run build && yarn run start",
     "test:e2e": "start-server-and-test start-server http://localhost:3001 cypress"
   },
